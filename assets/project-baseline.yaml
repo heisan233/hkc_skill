@@ -1,0 +1,35 @@
+project:
+  name: inspection-chassis-navigation
+  ros: ROS2 Humble
+  navigation: Nav2
+  lidar: Livox MID360
+  odometry: FAST-LIO
+  localization_node: global_localization_node
+
+frames:
+  odom: odom
+  base_candidates:
+    - base_footprint
+    - base_link
+  body: imu_link
+
+service:
+  navigation: nav-core.service
+
+workflow_order:
+  - communication
+  - nodes
+  - topics
+  - tf
+  - sensors
+  - map
+  - localization
+  - planner
+  - controller
+  - chassis
+
+historical_localization_parameters:
+  max_initialization_attempts: 100
+  threshold_fitness: 0.925
+  dis_updatemap: 1.0
+  max_online_translation_jump_m: 0.35
